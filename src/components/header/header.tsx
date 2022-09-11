@@ -2,12 +2,15 @@ import {Logo} from '../logo/logo';
 
 export function Header(): JSX.Element {
   const isUserPage = false;
+  const isLogin = false;
 
   return (
     <header className={`page-header film-card__head ${isUserPage && 'user-page__head'}`}>
       <Logo/>
 
+      {/*TODO add condition for MyList and Login pages*/}
       {isUserPage && <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>}
+      {isLogin && <h1 className="page-title user-page__title">Sign in</h1>}
 
       <ul className="user-block">
         <li className="user-block__item">
