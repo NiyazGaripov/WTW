@@ -1,13 +1,15 @@
-import {GenresList} from '../genres-list/genres-list';
+import {PropsWithChildren} from 'react';
 import {films} from '../../consts';
 import {SmallFilmCard} from '../small-film-card/small-film-card';
 
-export function Catalog(): JSX.Element {
+type Props = PropsWithChildren;
+
+export function Catalog({children}: Props): JSX.Element {
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-      <GenresList/>
+      {children}
 
       <div className="catalog__films-list">
         {
