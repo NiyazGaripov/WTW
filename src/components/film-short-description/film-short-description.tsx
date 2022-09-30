@@ -3,7 +3,7 @@ import {Controls} from '../controls/controls';
 type Props = {
   name: string,
   genre: string,
-  releaseYear: string,
+  releaseYear: number,
 }
 
 export function FilmShortDescription({name, genre, releaseYear}: Props): JSX.Element {
