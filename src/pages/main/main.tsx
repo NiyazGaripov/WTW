@@ -3,12 +3,13 @@ import {FilmCard} from '../../components/film-card/film-card';
 import {Catalog} from '../../components/catalog/catalog';
 import {Footer} from '../../components/footer/footer';
 import {GenresList} from '../../components/genres-list/genres-list';
+import {films} from '../../consts';
 
 export function Main(): JSX.Element {
   return (
     <>
       <SvgSprite/>
-      <FilmCard/>
+      <FilmCard film={films[0]}/>
       <div className="page-content">
         <Catalog>
           <GenresList/>
