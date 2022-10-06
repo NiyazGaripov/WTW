@@ -4,9 +4,9 @@ import {Header} from '../../components/header/header';
 import {NavigationList} from '../../components/navigation-list/navigation-list';
 import {FilmShortDescription} from '../../components/film-short-description/film-short-description';
 import {FilmInfo} from '../../components/film-info/film-info';
-import {FilmRating} from '../../components/film-rating/film-rating';
 import {Film} from '../../types/film.type';
 import {Catalog} from '../../components/catalog/catalog';
+import {FilmOverview} from "../../components/film-overview/film-overview";
 
 type Props = {
   film: Film
@@ -43,19 +43,7 @@ export function MoviePage({film}: Props): JSX.Element {
             <div className="film-card__desc">
               <NavigationList/>
 
-              <FilmRating
-                rating={film.rating}
-                scoresCount={film.scoresCount}
-              />
-
-              <div className="film-card__text">
-                <p>{film.description}</p>
-
-                <p className="film-card__director"><strong>Director: {film.director}</strong></p>
-
-                <p className="film-card__starring"><strong>Starring: {film.starring}</strong>
-                </p>
-              </div>
+              <FilmOverview film={film}/>
             </div>
 
           </FilmInfo>
