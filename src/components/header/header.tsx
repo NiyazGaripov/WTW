@@ -1,4 +1,5 @@
 import {Logo} from '../logo/logo';
+import {Breadcrumbs} from "../breadcrumbs/breadcrumbs";
 
 export function Header(): JSX.Element {
   const isUserPage = false;
@@ -14,16 +15,10 @@ export function Header(): JSX.Element {
       {isLogin && <h1 className="page-title user-page__title">Sign in</h1>}
       {
         isAddReview &&
-        <nav className="breadcrumbs">
-          <ul className="breadcrumbs__list">
-            <li className="breadcrumbs__item">
-              <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
-            </li>
-            <li className="breadcrumbs__item">
-              <a className="breadcrumbs__link">Add review</a>
-            </li>
-          </ul>
-        </nav>
+        <Breadcrumbs
+          filmName="The Grand Budapest Hotel"
+          path="film-page.html"
+        />
       }
 
       <ul className="user-block">
