@@ -7,7 +7,7 @@ export function MyList(): JSX.Element {
   return (
     <>
       <SvgSprite/>
-      <Header/>
+      <Header placeUse="my-list"/>
       <Catalog/>
       <Footer/>
     </>

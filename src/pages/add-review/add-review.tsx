@@ -17,7 +17,7 @@ export function AddReview({name, backgroundImage}: Props): JSX.Element {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header/>
+        <Header placeUse="add-review"/>
       </section>
     </>
   );

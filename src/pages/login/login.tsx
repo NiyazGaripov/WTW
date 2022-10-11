@@ -6,7 +6,7 @@ export function Login(): JSX.Element {
   return (
     <>
       <SvgSprite/>
-      <Header/>
+      <Header placeUse="login"/>
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">
           <div className="sign-in__fields">
