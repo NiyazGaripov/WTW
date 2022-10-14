@@ -12,7 +12,7 @@ type Props = {
   film: Film
 };
 
-export function MoviePage({film}: Props): JSX.Element {
+export function Film({film}: Props): JSX.Element {
   return (
     <>
       <SvgSprite/>
