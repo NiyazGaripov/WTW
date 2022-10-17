@@ -1,5 +1,5 @@
-import {SvgSprite} from "../../components/svg-sprite/svg-sprite";
-import {Header} from "../../components/header/header";
+import {SvgSprite} from '../../components/svg-sprite/svg-sprite';
+import {Header} from '../../components/header/header';
 
 type Props = {
   name: string;

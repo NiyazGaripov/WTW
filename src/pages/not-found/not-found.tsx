@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import styles from './not-found.module.css';
-import {AppRoute} from "../../consts";
+import {AppRoute} from '../../consts';
 
 export function NotFound(): JSX.Element {
   return (

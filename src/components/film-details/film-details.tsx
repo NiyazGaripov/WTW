@@ -1,7 +1,7 @@
-import {Film} from "../../types/film.type";
+import {Film} from '../../types/film.type';
 
 type Props = {
-  film: Film
+  film: Film;
 };
 
 export function FilmDetails({film}: Props): JSX.Element {

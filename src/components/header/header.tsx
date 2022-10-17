@@ -1,14 +1,16 @@
 import {Logo} from '../logo/logo';
-import {Breadcrumbs} from "../breadcrumbs/breadcrumbs";
+import {Breadcrumbs} from '../breadcrumbs/breadcrumbs';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../consts';
 
 type Props = {
   placeUse?: string;
 }
 
 export function Header({placeUse}: Props): JSX.Element {
-  const isUserPage = placeUse === 'my-list' ? true: false;
-  const isLogin = placeUse === 'login' ? true: false;
-  const isAddReview = placeUse === 'add-review' ? true: false;
+  const isUserPage = placeUse === 'my-list';
+  const isLogin = placeUse === 'login';
+  const isAddReview = placeUse === 'add-review';
 
   return (
     <header className={`page-header film-card__head ${isUserPage && 'user-page__head'}`}>
@@ -31,7 +33,7 @@ export function Header({placeUse}: Props): JSX.Element {
           </div>
         </li>
         <li className="user-block__item">
-          <a className="user-block__link">Sign out</a>
+          <Link to={AppRoute.Login} className="user-block__link">Sign out</Link>
         </li>
       </ul>
     </header>

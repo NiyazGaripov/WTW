@@ -6,10 +6,10 @@ import {FilmShortDescription} from '../../components/film-short-description/film
 import {FilmInfo} from '../../components/film-info/film-info';
 import {Film} from '../../types/film.type';
 import {Catalog} from '../../components/catalog/catalog';
-import {FilmOverview} from "../../components/film-overview/film-overview";
+import {FilmOverview} from '../../components/film-overview/film-overview';
 
 type Props = {
-  film: Film
+  film: Film;
 };
 
 export function Film({film}: Props): JSX.Element {
