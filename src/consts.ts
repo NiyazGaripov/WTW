@@ -61,6 +61,29 @@ export enum AuthorizationStatus {
 
 export const films: Film[] = [
   {
+    'name': 'The Grand Budapest Hotel',
+    'posterImage': 'img/the-grand-budapest-hotel-poster.jpg',
+    'previewImage': 'img/bg-the-grand-budapest-hotel.jpg',
+    'backgroundImage': 'img/bg-the-grand-budapest-hotel.jpg',
+    'backgroundColor': '#FDFDFC',
+    'description': 'Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers and supposedly Jewish jewelers fight to track down a priceless stolen diamond.',
+    'rating': 0.2,
+    'scoresCount': 716577,
+    'director': 'Guy Ritchie',
+    'starring': [
+      'Jason Statham',
+      'Brad Pitt',
+      'Benicio Del Toro'
+    ],
+    'runTime': 104,
+    'genre': 'Comedy',
+    'released': 2000,
+    'id': 1,
+    'isFavorite': false,
+    'videoLink': 'https://10.react.pages.academy/static/film/video/matrix.mp4',
+    'previewVideoLink': 'https://10.react.pages.academy/static/film/video/dog.mp4'
+  },
+  {
     'name': 'Snatch',
     'posterImage': 'img/snatch.jpg',
     'previewImage': 'img/snatch.jpg',
