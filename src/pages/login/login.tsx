@@ -4,7 +4,7 @@ import {Footer} from '../../components/footer/footer';
 
 export function Login(): JSX.Element {
   return (
-    <>
+    <div className="user-page">
       <SvgSprite/>
       <Header placeUse="login"/>
       <div className="sign-in user-page__content">
@@ -25,6 +25,6 @@ export function Login(): JSX.Element {
         </form>
       </div>
       <Footer/>
-    </>
+    </div>
   );
 }
