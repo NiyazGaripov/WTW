@@ -4,7 +4,7 @@ export function Footer(): JSX.Element {
   return (
     <footer className="page-footer">
       <div className="logo">
-        <Logo/>
+        <Logo isLightLogo/>
       </div>
 
       <div className="copyright">
