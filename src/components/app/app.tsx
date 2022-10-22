@@ -40,7 +40,13 @@ export function App(): JSX.Element {
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReview name='Johnny English' backgroundImage='img/johnny-english.jpg'/>}
+          element={
+            <AddReview
+              name='The Grand Budapest Hotel'
+              posterImage='img/the-grand-budapest-hotel-poster.jpg'
+              backgroundImage='img/bg-the-grand-budapest-hotel.jpg'
+            />
+          }
         />
         <Route
           path={AppRoute.Player}
