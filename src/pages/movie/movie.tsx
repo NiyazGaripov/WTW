@@ -39,6 +39,7 @@ export function Movie({film}: Props): JSX.Element {
           <FilmInfo
             name={film.name}
             posterImage={film.posterImage}
+            isBigPoster
           >
             <div className="film-card__desc">
               <NavigationList/>
