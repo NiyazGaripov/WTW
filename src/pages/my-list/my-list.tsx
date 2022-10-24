@@ -5,11 +5,11 @@ import {Catalog} from '../../components/catalog/catalog';
 
 export function MyList(): JSX.Element {
   return (
-    <>
+    <div className="user-page">
       <SvgSprite/>
       <Header placeUse="my-list"/>
       <Catalog/>
       <Footer/>
-    </>
+    </div>
   );
 }

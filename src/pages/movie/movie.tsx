@@ -6,13 +6,13 @@ import {FilmShortDescription} from '../../components/film-short-description/film
 import {FilmInfo} from '../../components/film-info/film-info';
 import {Film} from '../../types/film.type';
 import {Catalog} from '../../components/catalog/catalog';
-import {FilmOverview} from "../../components/film-overview/film-overview";
+import {FilmOverview} from '../../components/film-overview/film-overview';
 
 type Props = {
-  film: Film
+  film: Film;
 };
 
-export function MoviePage({film}: Props): JSX.Element {
+export function Movie({film}: Props): JSX.Element {
   return (
     <>
       <SvgSprite/>
@@ -39,6 +39,7 @@ export function MoviePage({film}: Props): JSX.Element {
           <FilmInfo
             name={film.name}
             posterImage={film.posterImage}
+            isBigPoster
           >
             <div className="film-card__desc">
               <NavigationList/>

@@ -1,15 +1,17 @@
+import {NavLink} from 'react-router-dom';
+
 export function NavigationList(): JSX.Element {
   return (
     <nav className="film-nav film-card__nav">
       <ul className="film-nav__list">
         <li className="film-nav__item film-nav__item--active">
-          <a href="#" className="film-nav__link">Overview</a>
+          <NavLink to={'/overview'} className="film-nav__link">Overview</NavLink>
         </li>
         <li className="film-nav__item">
-          <a href="#" className="film-nav__link">Details</a>
+          <NavLink to={'/details'} className="film-nav__link">Details</NavLink>
         </li>
         <li className="film-nav__item">
-          <a href="#" className="film-nav__link">Reviews</a>
+          <NavLink to={'/reviews'} className="film-nav__link">Reviews</NavLink>
         </li>
       </ul>
     </nav>

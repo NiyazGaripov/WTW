@@ -1,5 +1,5 @@
-import {Comment} from "../../types/comment.type";
-import {Review} from "../review/review";
+import {Comment} from '../../types/comment.type';
+import {Review} from '../review/review';
 
 type Props = {
   comments: Comment[];

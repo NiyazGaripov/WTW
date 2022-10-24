@@ -4,7 +4,7 @@ import {FilmInfo} from '../film-info/film-info';
 import {Film} from '../../types/film.type';
 
 type Props = {
-  film: Film
+  film: Film;
 };
 
 export function FilmCard({film}: Props): JSX.Element {
