@@ -3,7 +3,7 @@ import {FilmCard} from '../../components/film-card/film-card';
 import {Catalog} from '../../components/catalog/catalog';
 import {Footer} from '../../components/footer/footer';
 import {GenresList} from '../../components/genres-list/genres-list';
-import {films} from '../../consts';
+import {films} from '../../mocks/films';
 
 export function Main(): JSX.Element {
   return (

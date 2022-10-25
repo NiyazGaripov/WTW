@@ -1,5 +1,5 @@
 import {Route, Routes, BrowserRouter} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus, films} from '../../consts';
+import {AppRoute, AuthorizationStatus} from '../../consts';
 import {Main} from '../../pages/main/main';
 import {Login} from '../../pages/login/login';
 import {MyList} from '../../pages/my-list/my-list';
@@ -8,6 +8,7 @@ import {Player} from '../../pages/player/player';
 import {NotFound} from '../../pages/not-found/not-found';
 import {PrivateRoute} from '../private-route/private-route';
 import {Movie} from '../../pages/movie/movie';
+import {films} from '../../mocks/films';
 
 export function App(): JSX.Element {
   return (

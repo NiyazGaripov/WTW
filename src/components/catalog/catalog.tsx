@@ -1,6 +1,6 @@
 import {PropsWithChildren} from 'react';
-import {films} from '../../consts';
 import {SmallFilmCard} from '../small-film-card/small-film-card';
+import {films} from '../../mocks/films';
 
 type Props = PropsWithChildren<{
   className?: string;
