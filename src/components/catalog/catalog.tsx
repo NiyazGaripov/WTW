@@ -1,4 +1,4 @@
-import {PropsWithChildren} from 'react';
+import {PropsWithChildren, useState} from 'react';
 import {SmallFilmCard} from '../small-film-card/small-film-card';
 import {films} from '../../mocks/films';
 
@@ -7,6 +7,7 @@ type Props = PropsWithChildren<{
 }>;
 
 export function Catalog({children, className}: Props): JSX.Element {
+  const [activeCardId, setActiveCardId] = useState<number | null>(null);
   const isRelatedFilms = !!className;
 
   return (
@@ -25,10 +26,13 @@ export function Catalog({children, className}: Props): JSX.Element {
               key={film.name}
               name={film.name}
               posterImage={film.posterImage}
+              onCardEnter={() => setActiveCardId(film.id)}
+              onCardLeave={() => setActiveCardId(null)}
             />
           ))
         }
       </div>
+      {activeCardId}
 
       <div className="catalog__more">
         <button className="catalog__button" type="button">Show more</button>
