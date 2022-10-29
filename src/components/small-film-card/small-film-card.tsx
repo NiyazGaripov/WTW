@@ -1,11 +1,17 @@
 type Props = {
   name: string;
   posterImage: string;
+  onCardEnter?: () => void;
+  onCardLeave?: () => void;
 };
 
-export function SmallFilmCard({name, posterImage}: Props): JSX.Element {
+export function SmallFilmCard({name, posterImage, onCardEnter, onCardLeave}: Props): JSX.Element {
   return (
-    <article className="small-film-card catalog__films-card">
+    <article
+      className="small-film-card catalog__films-card"
+      onMouseEnter={onCardEnter}
+      onMouseLeave={onCardLeave}
+    >
       <div className="small-film-card__image">
         <img
           src={posterImage}
