@@ -11,7 +11,7 @@ export function Main(): JSX.Element {
       <SvgSprite/>
       <FilmCard film={films[0]}/>
       <div className="page-content">
-        <Catalog>
+        <Catalog films={films}>
           <GenresList/>
         </Catalog>
         <Footer/>
