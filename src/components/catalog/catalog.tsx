@@ -1,12 +1,13 @@
 import {PropsWithChildren, useState} from 'react';
 import {SmallFilmCard} from '../small-film-card/small-film-card';
-import {films} from '../../mocks/films';
+import {Film} from '../../types/film.type';
 
 type Props = PropsWithChildren<{
+  films: Film[];
   className?: string;
 }>;
 
-export function Catalog({children, className}: Props): JSX.Element {
+export function Catalog({children, films, className}: Props): JSX.Element {
   const [activeCardId, setActiveCardId] = useState<number | null>(null);
   const isRelatedFilms = !!className;
 
