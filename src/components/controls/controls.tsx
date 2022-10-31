@@ -1,3 +1,6 @@
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../consts';
+
 export function Controls(): JSX.Element {
   return (
     <div className="film-card__buttons">
@@ -14,7 +17,7 @@ export function Controls(): JSX.Element {
         <span>My list</span>
         <span className="film-card__count">9</span>
       </button>
-      <a href="add-review.html" className="btn film-card__button">Add review</a>
+      <Link to={AppRoute.AddReview} className="btn film-card__button">Add review</Link>
     </div>
   );
 }

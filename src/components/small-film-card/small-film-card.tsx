@@ -1,3 +1,6 @@
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../consts';
+
 type Props = {
   name: string;
   posterImage: string;
@@ -21,7 +24,7 @@ export function SmallFilmCard({name, posterImage, onCardEnter, onCardLeave}: Pro
         />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{name}</a>
+        <Link to={AppRoute.Movie} className="small-film-card__link">{name}</Link>
       </h3>
     </article>
   );
