@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import {genres} from '../../consts';
 
 export function GenresList(): JSX.Element {
@@ -10,7 +11,7 @@ export function GenresList(): JSX.Element {
               key={name}
               className="catalog__genres-item catalog__genres-item--active"
             >
-              <a href={path} className="catalog__genres-link">{name}</a>
+              <Link to={path} className="catalog__genres-link">{name}</Link>
             </li>
           )
         )

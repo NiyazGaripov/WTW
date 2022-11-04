@@ -9,10 +9,12 @@ import {Catalog} from '../../components/catalog/catalog';
 import {FilmOverview} from '../../components/film-overview/film-overview';
 
 type Props = {
-  film: Film;
+  films: Film[];
 };
 
-export function Movie({film}: Props): JSX.Element {
+export function Movie({films}: Props): JSX.Element {
+  const film = films[0];
+
   return (
     <>
       <SvgSprite/>
@@ -52,7 +54,10 @@ export function Movie({film}: Props): JSX.Element {
       </section>
 
       <div className="page-content">
-        <Catalog className='catalog--like-this'/>
+        <Catalog
+          films={films}
+          className='catalog--like-this'
+        />
         <Footer/>
       </div>
     </>
