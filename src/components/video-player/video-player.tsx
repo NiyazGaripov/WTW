@@ -1,4 +1,4 @@
-import {useEffect, useRef} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 type Props = {
   isPlaying: boolean;
@@ -7,12 +7,21 @@ type Props = {
 }
 
 export function VideoPlayer({isPlaying, videoLink, previewVideoLink}: Props): JSX.Element {
+  const [, setIsLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
+    let isVideoPlayerMounted = true;
+
     if (videoRef.current === null) {
       return;
     }
+
+    videoRef.current.addEventListener('loadeddata', () => {
+      if (isVideoPlayerMounted) {
+        setIsLoading(false);
+      }
+    });
 
     if (isPlaying) {
       videoRef.current.play();
@@ -20,6 +29,10 @@ export function VideoPlayer({isPlaying, videoLink, previewVideoLink}: Props): JS
     }
 
     videoRef.current.pause();
+
+    return () => {
+      isVideoPlayerMounted = false;
+    };
   }, [isPlaying]);
 
   return (
