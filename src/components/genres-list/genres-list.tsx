@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {genres} from '../../consts';
+import {GENRES} from '../../consts';
 
 type Props = {
   activeGenre: string;
@@ -10,7 +10,7 @@ export function GenresList({activeGenre}: Props): JSX.Element {
   return (
     <ul className="catalog__genres-list">
       {
-        genres.map(({ name, path}) =>
+        GENRES.map(({ name, path}) =>
           (
             <li
               key={name}
