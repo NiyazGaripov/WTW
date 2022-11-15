@@ -1,3 +1,4 @@
+import {Outlet} from 'react-router-dom';
 import {SvgSprite} from '../../components/svg-sprite/svg-sprite';
 import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header/header';
@@ -6,7 +7,6 @@ import {FilmShortDescription} from '../../components/film-short-description/film
 import {FilmInfo} from '../../components/film-info/film-info';
 import {Film} from '../../types/film.type';
 import {Catalog} from '../../components/catalog/catalog';
-import {FilmOverview} from '../../components/film-overview/film-overview';
 
 type Props = {
   films: Film[];
@@ -45,8 +45,7 @@ export function Movie({films}: Props): JSX.Element {
           >
             <div className="film-card__desc">
               <NavigationList/>
-
-              <FilmOverview film={film}/>
+              <Outlet/>
             </div>
 
           </FilmInfo>
