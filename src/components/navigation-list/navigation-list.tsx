@@ -1,18 +1,21 @@
-import {NavLink} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
+import {TABS} from '../../consts';
 
 export function NavigationList(): JSX.Element {
+  const {pathname} = useLocation();
+
   return (
     <nav className="film-nav film-card__nav">
       <ul className="film-nav__list">
-        <li className="film-nav__item film-nav__item--active">
-          <NavLink to={'/overview'} className="film-nav__link">Overview</NavLink>
-        </li>
-        <li className="film-nav__item">
-          <NavLink to={'/details'} className="film-nav__link">Details</NavLink>
-        </li>
-        <li className="film-nav__item">
-          <NavLink to={'/reviews'} className="film-nav__link">Reviews</NavLink>
-        </li>
+        {
+          TABS.map((tab) =>
+            (
+              <li key={tab} className={`film-nav__item ${pathname.includes(tab.toLowerCase()) && 'film-nav__item--active'}`}>
+                <Link to={tab.toLowerCase()} className="film-nav__link">{tab}</Link>
+              </li>
+            )
+          )
+        }
       </ul>
     </nav>
   );
