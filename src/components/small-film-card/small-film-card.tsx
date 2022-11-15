@@ -23,7 +23,7 @@ export function SmallFilmCard({id, name, posterImage, isPlaying, videoLink, prev
       {
         isPlaying ?
           <VideoPlayer isPlaying={isPlaying} videoLink={videoLink} previewVideoLink={previewVideoLink}/> :
-          <Link to={`/films/${id}`} className={`small-film-card__image ${styles.block}`}>
+          <Link to={`/films/${id}/overview`} className={`small-film-card__image ${styles.block}`}>
             <img
               src={posterImage}
               alt={name}
@@ -33,7 +33,7 @@ export function SmallFilmCard({id, name, posterImage, isPlaying, videoLink, prev
           </Link>
       }
       <h3 className="small-film-card__title">
-        <Link to={`/films/${id}`} className="small-film-card__link">{name}</Link>
+        <Link to={`/films/${id}/overview`} className="small-film-card__link">{name}</Link>
       </h3>
     </article>
   );
