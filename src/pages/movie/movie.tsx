@@ -1,4 +1,4 @@
-import {Outlet} from 'react-router-dom';
+import {Outlet, useParams} from 'react-router-dom';
 import {SvgSprite} from '../../components/svg-sprite/svg-sprite';
 import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header/header';
@@ -13,7 +13,9 @@ type Props = {
 };
 
 export function Movie({films}: Props): JSX.Element {
-  const film = films[0];
+  const {id = 0} = useParams();
+  const film = films.find((movie) => movie.id === +id) || films[0];
+  const relatedFilms = films.filter((movie) => movie.genre === film.genre);
 
   return (
     <>
@@ -54,7 +56,7 @@ export function Movie({films}: Props): JSX.Element {
 
       <div className="page-content">
         <Catalog
-          films={films}
+          films={relatedFilms}
           className='catalog--like-this'
         />
         <Footer/>
