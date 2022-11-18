@@ -25,8 +25,8 @@ export function Catalog({children, films, className}: Props): JSX.Element {
           films.map((film) => (
             <SmallFilmCard
               key={film.name}
-              name={film.name}
-              posterImage={film.posterImage}
+              film={film}
+              isPlaying={film.id === activeCardId}
               onCardEnter={() => setActiveCardId(film.id)}
               onCardLeave={() => setActiveCardId(null)}
             />

@@ -1,6 +1,6 @@
 import {Rating} from './types/rating.type';
 
-export const genres: { name: string, path: string }[] = [
+export const GENRES: { name: string, path: string }[] = [
   {
     name: 'All genres',
     path: 'all'
@@ -111,3 +111,5 @@ export const RATINGS: Rating[] = [
     title: 'Rating 1',
   },
 ];
+
+export const TABS = ['Overview', 'Details', 'Reviews'];

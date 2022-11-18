@@ -1,3 +1,4 @@
+import {Outlet, useParams} from 'react-router-dom';
 import {SvgSprite} from '../../components/svg-sprite/svg-sprite';
 import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header/header';
@@ -6,14 +7,15 @@ import {FilmShortDescription} from '../../components/film-short-description/film
 import {FilmInfo} from '../../components/film-info/film-info';
 import {Film} from '../../types/film.type';
 import {Catalog} from '../../components/catalog/catalog';
-import {FilmOverview} from '../../components/film-overview/film-overview';
 
 type Props = {
   films: Film[];
 };
 
 export function Movie({films}: Props): JSX.Element {
-  const film = films[0];
+  const {id = 0} = useParams();
+  const film = films.find((movie) => movie.id === +id) || films[0];
+  const relatedFilms = films.filter((movie) => movie.genre === film.genre);
 
   return (
     <>
@@ -45,8 +47,7 @@ export function Movie({films}: Props): JSX.Element {
           >
             <div className="film-card__desc">
               <NavigationList/>
-
-              <FilmOverview film={film}/>
+              <Outlet/>
             </div>
 
           </FilmInfo>
@@ -55,7 +56,7 @@ export function Movie({films}: Props): JSX.Element {
 
       <div className="page-content">
         <Catalog
-          films={films}
+          films={relatedFilms}
           className='catalog--like-this'
         />
         <Footer/>

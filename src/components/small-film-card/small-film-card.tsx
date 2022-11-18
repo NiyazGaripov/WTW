@@ -1,30 +1,36 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../consts';
+import {VideoPlayer} from '../video-player/video-player';
+import styles from './small-film-card.module.css';
+import {Film} from '../../types/film.type';
 
 type Props = {
-  name: string;
-  posterImage: string;
+  film: Film;
+  isPlaying: boolean;
   onCardEnter?: () => void;
   onCardLeave?: () => void;
 };
 
-export function SmallFilmCard({name, posterImage, onCardEnter, onCardLeave}: Props): JSX.Element {
+export function SmallFilmCard({film, isPlaying, onCardEnter, onCardLeave}: Props): JSX.Element {
+  const {id, name, posterImage, videoLink, previewVideoLink} = film;
   return (
     <article
       className="small-film-card catalog__films-card"
       onMouseEnter={onCardEnter}
       onMouseLeave={onCardLeave}
     >
-      <div className="small-film-card__image">
+      {
+        isPlaying && <VideoPlayer isPlaying={isPlaying} videoLink={videoLink} previewVideoLink={previewVideoLink}/>
+      }
+      <Link to={`/films/${id}/overview`} className={`small-film-card__image ${styles.block}`}>
         <img
           src={posterImage}
           alt={name}
           width="280"
           height="175"
         />
-      </div>
+      </Link>
       <h3 className="small-film-card__title">
-        <Link to={AppRoute.Movie} className="small-film-card__link">{name}</Link>
+        <Link to={`/films/${id}/overview`} className="small-film-card__link">{name}</Link>
       </h3>
     </article>
   );
