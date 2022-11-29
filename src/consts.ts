@@ -113,3 +113,7 @@ export const RATINGS: Rating[] = [
 ];
 
 export const TABS = ['Overview', 'Details', 'Reviews'];
+
+export const Config = {
+  DEFAULT_GENRE: 'All genres',
+};
