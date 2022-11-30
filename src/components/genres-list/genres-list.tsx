@@ -1,27 +1,26 @@
 import {Link} from 'react-router-dom';
-import {GENRES} from '../../consts';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {changeGenre} from '../../store/action';
 
 export function GenresList(): JSX.Element {
   const dispatch = useAppDispatch();
-  const {activeGenre} = useAppSelector((state) => state);
+  const {activeGenre, genres} = useAppSelector((state) => state);
 
   return (
     <ul className="catalog__genres-list">
       {
-        GENRES.map(({ name, path}) =>
+        genres.map((genre) =>
           (
             <li
-              key={name}
-              className={`catalog__genres-item ${activeGenre === name && 'catalog__genres-item--active'}`}
+              key={genre}
+              className={`catalog__genres-item ${activeGenre === genre && 'catalog__genres-item--active'}`}
             >
               <Link
-                to={`?genre=${path}`}
+                to={`?genre=${genre}`}
                 className="catalog__genres-link"
-                onClick={() => dispatch(changeGenre(name))}
+                onClick={() => dispatch(changeGenre(genre))}
               >
-                {name}
+                {genre}
               </Link>
             </li>
           )
