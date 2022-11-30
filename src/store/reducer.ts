@@ -1,20 +1,32 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {AuthorizationStatus} from '../consts';
+import {AuthorizationStatus, Config} from '../consts';
 import {films} from '../mocks/films';
-import {changeGenre, filteredMoviesByGenre} from './action';
+import {changeGenre, filteredMoviesByGenre, setGenres} from './action';
+import {Film} from '../types/film.type';
 
-const initialState = {
+type InitialState = {
+  isAuth: string;
+  movies: Film[];
+  genres: string[];
+  activeGenre: string;
+}
+
+const initialState: InitialState = {
   isAuth: AuthorizationStatus.NoAuth,
-  genre: 'All genres',
-  films: films,
+  movies: films,
+  genres: [],
+  activeGenre: Config.DEFAULT_GENRE,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeGenre, (state, action) => {
-      state.genre = action.payload;
+      state.activeGenre = action.payload;
     })
     .addCase(filteredMoviesByGenre, (state, action) => {
-      state.films = action.payload;
+      state.movies = action.payload;
+    })
+    .addCase(setGenres, (state, action) => {
+      state.genres = action.payload;
     });
 });
