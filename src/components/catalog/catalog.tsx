@@ -34,10 +34,6 @@ export function Catalog({children, films, className}: Props): JSX.Element {
         }
       </div>
       {activeCardId}
-
-      <div className="catalog__more">
-        <button className="catalog__button" type="button">Show more</button>
-      </div>
     </section>
   );
 }
