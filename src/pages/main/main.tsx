@@ -8,8 +8,9 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {filteredMoviesByGenre} from '../../store/action';
 import {Film} from '../../types/film.type';
 import {films} from '../../mocks/films';
+import {ShowMore} from '../../components/show-more/show-more';
 
-const getFilms = (genre: string, movies: Film[]): Film[] => {
+const getFilteredFilms = (genre: string, movies: Film[]): Film[] => {
   if (genre === 'All genres') {
     return movies;
   }
@@ -19,8 +20,9 @@ const getFilms = (genre: string, movies: Film[]): Film[] => {
 
 export function Main(): JSX.Element {
   const dispatch = useAppDispatch();
-  const {activeGenre} = useAppSelector((state) => state);
-  const filteredFilms = getFilms(activeGenre, films);
+  const {activeGenre, numberOfFilmsShown} = useAppSelector((state) => state);
+  const filteredFilms = getFilteredFilms(activeGenre, films);
+  const showedFilms = filteredFilms.slice(0, numberOfFilmsShown);
   const film = filteredFilms[0];
 
   useEffect(() => {
@@ -32,9 +34,14 @@ export function Main(): JSX.Element {
       <SvgSprite/>
       {film && <FilmCard film={film}/>}
       <div className="page-content">
-        <Catalog films={filteredFilms}>
-          <GenresList/>
-        </Catalog>
+        {
+          films.length ?
+            <Catalog films={showedFilms}>
+              <GenresList/>
+              {((filteredFilms.length - showedFilms.length) > 0) && <ShowMore/>}
+            </Catalog> :
+            <div>Loading...</div>
+        }
         <Footer/>
       </div>
     </>
