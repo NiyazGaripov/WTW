@@ -73,4 +73,5 @@ export const TABS = ['Overview', 'Details', 'Reviews'];
 
 export const Config = {
   DEFAULT_GENRE: 'All genres',
+  NUMBER_OF_FILMS_SHOWN: 8,
 };
