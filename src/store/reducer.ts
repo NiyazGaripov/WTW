@@ -1,7 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {AuthorizationStatus, Config} from '../consts';
 import {films} from '../mocks/films';
-import {changeGenre, filteredMoviesByGenre, showMoreMovies} from './action';
+import {changeGenre, filteredMoviesByGenre, resetNumberOfFilmsShown, showMoreMovies} from './action';
 import {Film} from '../types/film.type';
 
 type InitialState = {
@@ -24,12 +24,14 @@ export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeGenre, (state, action) => {
       state.activeGenre = action.payload;
-      state.numberOfFilmsShown = Config.NUMBER_OF_FILMS_SHOWN;
     })
     .addCase(filteredMoviesByGenre, (state, action) => {
       state.movies = action.payload;
     })
     .addCase(showMoreMovies, (state) => {
       state.numberOfFilmsShown += Config.NUMBER_OF_FILMS_SHOWN;
+    })
+    .addCase(resetNumberOfFilmsShown, (state) => {
+      state.numberOfFilmsShown = Config.NUMBER_OF_FILMS_SHOWN;
     });
 });
