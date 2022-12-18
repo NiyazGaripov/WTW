@@ -1,10 +1,14 @@
 import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {changeGenre} from '../../store/action';
+import {changeGenre, resetNumberOfFilmsShown} from '../../store/action';
 
 export function GenresList(): JSX.Element {
   const dispatch = useAppDispatch();
   const {activeGenre, genres} = useAppSelector((state) => state);
+  const handleLinkGenreClick = (genre: string) => {
+    dispatch(changeGenre(genre));
+    dispatch(resetNumberOfFilmsShown());
+  };
 
   return (
     <ul className="catalog__genres-list">
@@ -18,7 +22,7 @@ export function GenresList(): JSX.Element {
               <Link
                 to={`?genre=${genre}`}
                 className="catalog__genres-link"
-                onClick={() => dispatch(changeGenre(genre))}
+                onClick={() => handleLinkGenreClick(genre)}
               >
                 {genre}
               </Link>
