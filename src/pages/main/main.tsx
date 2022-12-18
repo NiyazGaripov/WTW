@@ -5,7 +5,7 @@ import {Catalog} from '../../components/catalog/catalog';
 import {Footer} from '../../components/footer/footer';
 import {GenresList} from '../../components/genres-list/genres-list';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {filteredMoviesByGenre} from '../../store/action';
+import {filteredMoviesByGenre, resetNumberOfFilmsShown} from '../../store/action';
 import {Film} from '../../types/film.type';
 import {films} from '../../mocks/films';
 import {ShowMore} from '../../components/show-more/show-more';
@@ -26,6 +26,7 @@ export function Main(): JSX.Element {
   const film = filteredFilms[0];
 
   useEffect(() => {
+    dispatch(resetNumberOfFilmsShown());
     dispatch(filteredMoviesByGenre(filteredFilms));
   }, [activeGenre]);
 
