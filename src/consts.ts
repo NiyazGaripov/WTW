@@ -1,48 +1,5 @@
 import {Rating} from './types/rating.type';
 
-export const GENRES: { name: string, path: string }[] = [
-  {
-    name: 'All genres',
-    path: 'all'
-  },
-  {
-    name: 'Comedies',
-    path: 'comedies'
-  },
-  {
-    name: 'Crime',
-    path: 'crime'
-  },
-  {
-    name: 'Documentary',
-    path: 'documentary'
-  },
-  {
-    name: 'Dramas',
-    path: 'dramas'
-  },
-  {
-    name: 'Horror',
-    path: 'horror'
-  },
-  {
-    name: 'Kids & Family',
-    path: 'fids-family'
-  },
-  {
-    name: 'Romance',
-    path: 'romance'
-  },
-  {
-    name: 'Sci-Fi',
-    path: 'sci-fi'
-  },
-  {
-    name: 'Thrillers',
-    path: 'thrillers'
-  },
-];
-
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -113,3 +70,8 @@ export const RATINGS: Rating[] = [
 ];
 
 export const TABS = ['Overview', 'Details', 'Reviews'];
+
+export const Config = {
+  DEFAULT_GENRE: 'All genres',
+  NUMBER_OF_FILMS_SHOWN: 8,
+};

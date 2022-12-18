@@ -1,4 +1,4 @@
-import {PropsWithChildren, useState} from 'react';
+import React, {PropsWithChildren, useState} from 'react';
 import {SmallFilmCard} from '../small-film-card/small-film-card';
 import {Film} from '../../types/film.type';
 
@@ -10,6 +10,7 @@ type Props = PropsWithChildren<{
 export function Catalog({children, films, className}: Props): JSX.Element {
   const [activeCardId, setActiveCardId] = useState<number | null>(null);
   const isRelatedFilms = !!className;
+  const [genres, button] = React.Children.toArray(children);
 
   return (
     <section className={`catalog ${className}`}>
@@ -18,7 +19,7 @@ export function Catalog({children, films, className}: Props): JSX.Element {
         isRelatedFilms && <h2 className="catalog__title">More like this</h2>
       }
 
-      {children}
+      {genres}
 
       <div className="catalog__films-list">
         {
@@ -33,11 +34,8 @@ export function Catalog({children, films, className}: Props): JSX.Element {
           ))
         }
       </div>
+      {button}
       {activeCardId}
-
-      <div className="catalog__more">
-        <button className="catalog__button" type="button">Show more</button>
-      </div>
     </section>
   );
 }
