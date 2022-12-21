@@ -75,3 +75,11 @@ export const Config = {
   DEFAULT_GENRE: 'All genres',
   NUMBER_OF_FILMS_SHOWN: 8,
 };
+
+export enum APIRoute {
+  Films = '/films',
+  Promo = '/promo',
+  Favorites = '/favorite',
+  Login = '/login',
+  Logout = '/logout',
+}
