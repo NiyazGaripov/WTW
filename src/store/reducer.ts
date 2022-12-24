@@ -5,7 +5,7 @@ import {changeGenre, filteredMoviesByGenre, loadFilms, resetNumberOfFilmsShown, 
 import {Film} from '../types/film.type';
 
 type InitialState = {
-  isAuth: string;
+  authorizationStatus: string;
   movies: Film[];
   genres: string[];
   activeGenre: string;
@@ -13,7 +13,7 @@ type InitialState = {
 }
 
 const initialState: InitialState = {
-  isAuth: AuthorizationStatus.NoAuth,
+  authorizationStatus: AuthorizationStatus.NoAuth,
   movies: films,
   genres: ['All genres', ...new Set(films.map((movie) => movie.genre))],
   activeGenre: Config.DEFAULT_GENRE,
