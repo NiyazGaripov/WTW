@@ -83,3 +83,10 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
 }
+
+export enum DataLoadingStatus {
+  None = 'none',
+  Pending = 'pending',
+  Fulfilled = 'fulfilled',
+  Rejected = 'rejected',
+}
