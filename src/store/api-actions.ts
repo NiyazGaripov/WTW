@@ -3,7 +3,7 @@ import {AxiosInstance} from 'axios';
 import {AppDispatch, State} from '../types/state';
 import {Film} from '../types/film.type';
 import {APIRoute, DataLoadingStatus} from '../consts';
-import {loadFilms, setDataLoadingStatus} from './action';
+import {loadFavoriteFilms, loadFilms, setDataLoadingStatus} from './action';
 
 type AuthData = {
   email: string;
@@ -29,6 +29,24 @@ export const fetchFilmsAction = createAsyncThunk<void, undefined, {
       dispatch(setDataLoadingStatus(DataLoadingStatus.Pending));
       const {data} = await api.get<Film[]>(APIRoute.Films);
       dispatch(loadFilms(data));
+      dispatch(setDataLoadingStatus(DataLoadingStatus.Fulfilled));
+    } catch {
+      dispatch(setDataLoadingStatus(DataLoadingStatus.Rejected));
+    }
+  },
+);
+
+export const fetchFavoriteFilmsAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchFavoriteFilms',
+  async (_arg, {dispatch, extra: api}) => {
+    try {
+      dispatch(setDataLoadingStatus(DataLoadingStatus.Pending));
+      const {data} = await api.get<Film[]>(APIRoute.Films);
+      dispatch(loadFavoriteFilms(data));
       dispatch(setDataLoadingStatus(DataLoadingStatus.Fulfilled));
     } catch {
       dispatch(setDataLoadingStatus(DataLoadingStatus.Rejected));
