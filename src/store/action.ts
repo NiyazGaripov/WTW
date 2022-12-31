@@ -7,5 +7,6 @@ export const filteredMoviesByGenre = createAction<Film[]>('common/filteredMovies
 export const showMoreMovies = createAction<void>('common/showMoreMovies');
 export const resetNumberOfFilmsShown = createAction<void>('common/resetNumberOfFilmsShown');
 export const loadFilms = createAction<Film[]>('data/loadFilms');
+export const loadFavoriteFilms = createAction<Film[]>('data/loadFavoriteFilms');
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 export const setDataLoadingStatus = createAction<DataLoadingStatus>('data/setDataLoadingStatus');
