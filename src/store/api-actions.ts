@@ -2,8 +2,9 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AxiosInstance} from 'axios';
 import {AppDispatch, State} from '../types/state';
 import {Film} from '../types/film.type';
-import {APIRoute, DataLoadingStatus} from '../consts';
-import {loadFavoriteFilms, loadFilms, setDataLoadingStatus} from './action';
+import {APIRoute, AuthorizationStatus, DataLoadingStatus} from '../consts';
+import {loadFavoriteFilms, loadFilms, requireAuthorization, setDataLoadingStatus} from './action';
+import {dropToken, saveToken} from '../services/token';
 
 type AuthData = {
   email: string;
@@ -50,6 +51,22 @@ export const fetchFavoriteFilmsAction = createAsyncThunk<void, undefined, {
       dispatch(setDataLoadingStatus(DataLoadingStatus.Fulfilled));
     } catch {
       dispatch(setDataLoadingStatus(DataLoadingStatus.Rejected));
+    }
+  },
+);
+
+export const checkAuthAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'user/checkAuth',
+  async (_arg, {dispatch, extra: api}) => {
+    try {
+      await api.get(APIRoute.Login);
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    } catch {
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
   },
 );
