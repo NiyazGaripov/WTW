@@ -1,6 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {AuthorizationStatus, Config} from '../consts';
-import {films} from '../mocks/films';
 import {
   changeGenre,
   filteredMoviesByGenre,
@@ -8,6 +7,7 @@ import {
   loadFilms,
   requireAuthorization,
   resetNumberOfFilmsShown,
+  setGenres,
   showMoreMovies
 } from './action';
 import {Film} from '../types/film.type';
@@ -23,15 +23,18 @@ type InitialState = {
 
 const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
-  movies: films,
+  movies: [],
   favoriteMovies: [],
-  genres: ['All genres', ...new Set(films.map((movie) => movie.genre))],
+  genres: [],
   activeGenre: Config.DEFAULT_GENRE,
   numberOfFilmsShown: Config.NUMBER_OF_FILMS_SHOWN,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(setGenres, (state, action) => {
+      state.genres = action.payload;
+    })
     .addCase(changeGenre, (state, action) => {
       state.activeGenre = action.payload;
     })
