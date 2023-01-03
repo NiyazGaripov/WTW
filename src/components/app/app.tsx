@@ -1,7 +1,5 @@
 import {Route, Routes, BrowserRouter} from 'react-router-dom';
-import {Film} from '../../types/film.type';
 import {AppRoute, AuthorizationStatus} from '../../consts';
-import {films} from '../../mocks/films';
 import {comments} from '../../mocks/comments';
 import {Main} from '../../pages/main/main';
 import {Login} from '../../pages/login/login';
@@ -14,8 +12,6 @@ import {Movie} from '../../pages/movie/movie';
 import {FilmOverview} from '../film-overview/film-overview';
 import {FilmDetails} from '../film-details/film-details';
 import {FilmReviews} from '../film-reviews/film-reviews';
-
-const favoriteFilms = films.filter((film: Film) => film.isFavorite);
 
 export function App(): JSX.Element {
   return (
@@ -33,21 +29,21 @@ export function App(): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <MyList films={favoriteFilms}/>
+              <MyList/>
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Movie}
-          element={<Movie films={films}/>}
+          element={<Movie/>}
         >
           <Route
             path="overview"
-            element={<FilmOverview film={films[0]}/>}
+            element={<FilmOverview/>}
           />
           <Route
             path="details"
-            element={<FilmDetails film={films[0]}/>}
+            element={<FilmDetails/>}
           />
           <Route
             path="reviews"
@@ -56,17 +52,11 @@ export function App(): JSX.Element {
         </Route>
         <Route
           path={AppRoute.AddReview}
-          element={
-            <AddReview
-              name={films[0].name}
-              posterImage={films[0].posterImage}
-              backgroundImage={films[0].backgroundImage}
-            />
-          }
+          element={<AddReview/>}
         />
         <Route
           path={AppRoute.Player}
-          element={<Player film={films[0]}/>}
+          element={<Player/>}
         />
         <Route
           path={AppRoute.NotFound}
