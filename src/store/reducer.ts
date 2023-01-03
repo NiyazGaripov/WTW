@@ -5,6 +5,7 @@ import {
   filteredMoviesByGenre,
   loadFavoriteFilms,
   loadFilms,
+  loadMovie,
   loadPromoFilm,
   requireAuthorization,
   resetNumberOfFilmsShown,
@@ -16,6 +17,7 @@ import {Film} from '../types/film.type';
 type InitialState = {
   authorizationStatus: string;
   movies: Film[];
+  movie: Film | Record<string, never>;
   promoFilm: Film | Record<string, never>;
   favoriteMovies: Film[];
   genres: string[];
@@ -26,6 +28,7 @@ type InitialState = {
 const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   movies: [],
+  movie: {},
   promoFilm: {},
   favoriteMovies: [],
   genres: [],
@@ -52,6 +55,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadFilms, (state, action) => {
       state.movies = action.payload;
+    })
+    .addCase(loadMovie, (state, action) => {
+      state.movie = action.payload;
     })
     .addCase(loadPromoFilm, (state, action) => {
       state.promoFilm = action.payload;
