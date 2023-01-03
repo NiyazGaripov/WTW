@@ -1,21 +1,17 @@
-import {Outlet, useParams} from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 import {SvgSprite} from '../../components/svg-sprite/svg-sprite';
 import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header/header';
 import {NavigationList} from '../../components/navigation-list/navigation-list';
 import {FilmShortDescription} from '../../components/film-short-description/film-short-description';
 import {FilmInfo} from '../../components/film-info/film-info';
-import {Film} from '../../types/film.type';
 import {Catalog} from '../../components/catalog/catalog';
+import {useAppSelector} from '../../hooks';
 
-type Props = {
-  films: Film[];
-};
-
-export function Movie({films}: Props): JSX.Element {
-  const {id = 0} = useParams();
-  const film = films.find((movie) => movie.id === +id) || films[0];
-  const relatedFilms = films.filter((movie) => movie.genre === film.genre);
+export function Movie(): JSX.Element {
+  const movie = useAppSelector((state) => state.movie);
+  const movies = useAppSelector((state) => state.movies);
+  const relatedFilms = movies.filter((film) => movie.genre === film.genre);
 
   return (
     <>
@@ -23,7 +19,7 @@ export function Movie({films}: Props): JSX.Element {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film.backgroundImage} alt={film.name}/>
+            <img src={movie.backgroundImage} alt={movie.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -32,17 +28,17 @@ export function Movie({films}: Props): JSX.Element {
 
           <div className="film-card__wrap">
             <FilmShortDescription
-              name={film.name}
-              genre={film.genre}
-              releaseYear={film.released}
+              name={movie.name}
+              genre={movie.genre}
+              releaseYear={movie.released}
             />
           </div>
         </div>
 
         <div className="film-card__wrap film-card__translate-top">
           <FilmInfo
-            name={film.name}
-            posterImage={film.posterImage}
+            name={movie.name}
+            posterImage={movie.posterImage}
             isBigPoster
           >
             <div className="film-card__desc">

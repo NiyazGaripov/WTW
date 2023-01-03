@@ -1,24 +1,22 @@
 import {FilmRating} from '../film-rating/film-rating';
-import {Film} from '../../types/film.type';
+import {useAppSelector} from '../../hooks';
 
-type Props = {
-  film: Film;
-};
+export function FilmOverview(): JSX.Element {
+  const movie = useAppSelector((state) => state.movie);
 
-export function FilmOverview({film}: Props): JSX.Element {
   return (
     <>
       <FilmRating
-        rating={film.rating}
-        scoresCount={film.scoresCount}
+        rating={movie.rating}
+        scoresCount={movie.scoresCount}
       />
 
       <div className="film-card__text">
-        <p>{film.description}</p>
+        <p>{movie.description}</p>
 
-        <p className="film-card__director"><strong>Director: {film.director}</strong></p>
+        <p className="film-card__director"><strong>Director: {movie.director}</strong></p>
 
-        <p className="film-card__starring"><strong>Starring: {film.starring}</strong>
+        <p className="film-card__starring"><strong>Starring: {movie.starring}</strong>
         </p>
       </div>
     </>

@@ -1,14 +1,11 @@
 import {SvgSprite} from '../../components/svg-sprite/svg-sprite';
 import {Header} from '../../components/header/header';
 import {ReviewForm} from '../../components/review-form/review-form';
+import {useAppSelector} from '../../hooks';
 
-type Props = {
-  name: string;
-  posterImage: string;
-  backgroundImage: string;
-};
+export function AddReview(): JSX.Element {
+  const {name, posterImage, backgroundImage} = useAppSelector((state) => state.movie);
 
-export function AddReview({name, posterImage, backgroundImage}: Props): JSX.Element {
   return (
     <>
       <SvgSprite/>

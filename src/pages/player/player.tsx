@@ -1,16 +1,14 @@
 import {SvgSprite} from '../../components/svg-sprite/svg-sprite';
-import {Film} from '../../types/film.type';
+import {useAppSelector} from '../../hooks';
 
-type Props = {
-  film: Film;
-}
+export function Player(): JSX.Element {
+  const {name, videoLink, previewVideoLink} = useAppSelector((state) => state.movie);
 
-export function Player({film}: Props): JSX.Element {
   return (
     <>
       <SvgSprite/>
       <div className="player">
-        <video src={film.videoLink} className="player__video" poster={film.previewVideoLink}></video>
+        <video src={videoLink} className="player__video" poster={previewVideoLink}></video>
 
         <button type="button" className="player__exit">Exit</button>
 
@@ -38,7 +36,7 @@ export function Player({film}: Props): JSX.Element {
               <span>Pause</span>
             </button>
 
-            <div className="player__name">{film.name}</div>
+            <div className="player__name">{name}</div>
 
             <button type="button" className="player__full-screen">
               <svg viewBox="0 0 27 27" width="27" height="27">
