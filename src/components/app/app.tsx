@@ -52,7 +52,11 @@ export function App(): JSX.Element {
         </Route>
         <Route
           path={AppRoute.AddReview}
-          element={<AddReview/>}
+          element={
+            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+              <AddReview/>
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.Player}
