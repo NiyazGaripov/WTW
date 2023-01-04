@@ -1,7 +1,12 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../consts';
+import {AppRoute, AuthorizationStatus} from '../../consts';
+import {useAppSelector} from '../../hooks';
 
 export function Controls(): JSX.Element {
+  const favoriteMovies = useAppSelector((state) => state.favoriteMovies);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const favoriteMoviesCount = favoriteMovies.length;
+
   return (
     <div className="film-card__buttons">
       <Link
@@ -22,7 +27,7 @@ export function Controls(): JSX.Element {
           <use xlinkHref="#add"></use>
         </svg>
         <span>My list</span>
-        <span className="film-card__count">9</span>
+        {authorizationStatus === AuthorizationStatus.Auth && <span className="film-card__count">{favoriteMoviesCount}</span>}
       </Link>
 
       <Link to={AppRoute.AddReview} className="btn film-card__button">Add review</Link>
