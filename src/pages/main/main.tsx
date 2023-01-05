@@ -21,10 +21,11 @@ const getGenres = (movies: Film[]): string[] => ['All genres', ...new Set(movies
 
 export function Main(): JSX.Element {
   const dispatch = useAppDispatch();
-  const {movies, activeGenre, numberOfFilmsShown} = useAppSelector((state) => state);
+  const movies = useAppSelector((state) => state.movies);
+  const activeGenre = useAppSelector((state) => state.activeGenre);
+  const numberOfFilmsShown = useAppSelector((state) => state.numberOfFilmsShown);
   const filteredFilms = getFilteredFilms(activeGenre, movies);
   const showedFilms = filteredFilms.slice(0, numberOfFilmsShown);
-  const film = filteredFilms[0];
 
   useEffect(() => {
     dispatch(resetNumberOfFilmsShown());
@@ -35,7 +36,7 @@ export function Main(): JSX.Element {
   return (
     <>
       <SvgSprite/>
-      {film && <FilmCard film={film}/>}
+      {FilmCard}
       <div className="page-content">
         {
           movies.length ?
