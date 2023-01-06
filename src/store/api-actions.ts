@@ -3,8 +3,16 @@ import {AxiosInstance} from 'axios';
 import {AppDispatch, State} from '../types/state';
 import {Film} from '../types/film.type';
 import {APIRoute, AuthorizationStatus, DataLoadingStatus} from '../consts';
-import {loadFavoriteFilms, loadFilms, loadPromoFilm, requireAuthorization, setDataLoadingStatus} from './action';
+import {
+  loadFavoriteFilms,
+  loadFilms,
+  loadPromoFilm,
+  requireAuthorization,
+  setDataLoadingStatus,
+  setGenres
+} from './action';
 import {dropToken, saveToken} from '../services/token';
+import {getGenres} from '../utils/get-genres';
 
 type AuthData = {
   email: string;
@@ -30,6 +38,7 @@ export const fetchFilmsAction = createAsyncThunk<void, undefined, {
       dispatch(setDataLoadingStatus(DataLoadingStatus.Pending));
       const {data} = await api.get<Film[]>(APIRoute.Films);
       dispatch(loadFilms(data));
+      dispatch(setGenres(getGenres(data)));
       dispatch(setDataLoadingStatus(DataLoadingStatus.Fulfilled));
     } catch {
       dispatch(setDataLoadingStatus(DataLoadingStatus.Rejected));
