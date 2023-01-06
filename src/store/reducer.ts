@@ -13,6 +13,7 @@ import {
   showMoreMovies
 } from './action';
 import {Film} from '../types/film.type';
+import {getFilteredFilms} from '../utils/get-filtered-films';
 
 type InitialState = {
   authorizationStatus: string;
@@ -23,6 +24,7 @@ type InitialState = {
   genres: string[];
   activeGenre: string;
   numberOfFilmsShown: number;
+  filteredMovies: Film[];
 }
 
 const initialState: InitialState = {
@@ -34,6 +36,7 @@ const initialState: InitialState = {
   genres: [],
   activeGenre: Config.DEFAULT_GENRE,
   numberOfFilmsShown: Config.NUMBER_OF_FILMS_SHOWN,
+  filteredMovies: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -45,7 +48,7 @@ export const reducer = createReducer(initialState, (builder) => {
       state.activeGenre = action.payload;
     })
     .addCase(filteredMoviesByGenre, (state, action) => {
-      state.movies = action.payload;
+      state.filteredMovies = getFilteredFilms(action.payload, state.movies);
     })
     .addCase(showMoreMovies, (state) => {
       state.numberOfFilmsShown += Config.NUMBER_OF_FILMS_SHOWN;
