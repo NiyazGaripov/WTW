@@ -4,7 +4,8 @@ import {changeGenre, resetNumberOfFilmsShown} from '../../store/action';
 
 export function GenresList(): JSX.Element {
   const dispatch = useAppDispatch();
-  const {activeGenre, genres} = useAppSelector((state) => state);
+  const activeGenre = useAppSelector((state) => state.activeGenre);
+  const genres = useAppSelector((state) => state.genres);
   const handleLinkGenreClick = (genre: string) => {
     dispatch(changeGenre(genre));
     dispatch(resetNumberOfFilmsShown());
