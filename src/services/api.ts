@@ -1,4 +1,4 @@
-import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
+import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios';
 import {StatusCodes} from 'http-status-codes';
 import {getToken} from './token';
 
@@ -27,6 +27,13 @@ export const createAPI = (): AxiosInstance => {
       }
 
       return config;
+    },
+  );
+
+  api.interceptors.response.use(
+    (response) => response,
+    (error: AxiosError) => {
+      if (error.response && displayError(error.response.status)) {}
     },
   );
 
