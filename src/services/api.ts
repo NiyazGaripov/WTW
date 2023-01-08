@@ -1,8 +1,15 @@
 import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
+import {StatusCodes} from 'http-status-codes';
 import {getToken} from './token';
 
 const BACKEND_URL = 'https://10.react.pages.academy/wtw';
 const REQUEST_TIMEOUT = 5000;
+const statusCodes = new Set([
+  StatusCodes.BAD_REQUEST,
+  StatusCodes.UNAUTHORIZED,
+  StatusCodes.NOT_FOUND,
+  StatusCodes.INTERNAL_SERVER_ERROR,
+]);
 
 export const createAPI = (): AxiosInstance => {
   const api = axios.create({
