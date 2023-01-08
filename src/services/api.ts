@@ -10,6 +10,7 @@ const statusCodes = new Set([
   StatusCodes.NOT_FOUND,
   StatusCodes.INTERNAL_SERVER_ERROR,
 ]);
+const displayError = (code: StatusCodes) => statusCodes.has(code);
 
 export const createAPI = (): AxiosInstance => {
   const api = axios.create({
