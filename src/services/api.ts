@@ -35,7 +35,9 @@ export const createAPI = (): AxiosInstance => {
     (response) => response,
     (error: AxiosError) => {
       if (error.response && displayError(error.response.status)) {
-        toast.warn(error.response.data.error);
+        toast.warn(error.response.data.error, {
+          theme: 'colored'
+        });
       }
     },
   );
