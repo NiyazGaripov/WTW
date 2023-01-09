@@ -13,6 +13,7 @@ type Props = {
 export function Header({placeUse}: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const favoriteMovies = useAppSelector((state) => state.favoriteMovies);
   const isLogin = placeUse === 'login';
   const isUserPage = placeUse === 'my-list';
   const isAddReview = placeUse === 'add-review';
@@ -25,7 +26,7 @@ export function Header({placeUse}: Props): JSX.Element {
     <header className={`page-header film-card__head ${(isUserPage || authorizationStatus === AuthorizationStatus.NoAuth) && 'user-page__head'}`}>
       <Logo/>
 
-      {isUserPage && <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>}
+      {isUserPage && <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{favoriteMovies.length}</span></h1>}
       {(authorizationStatus === AuthorizationStatus.NoAuth && isLogin) && <h1 className="page-title user-page__title">Sign in</h1>}
       {
         isAddReview &&
