@@ -13,6 +13,7 @@ type Props = {
 export function Header({placeUse}: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isLogin = placeUse === 'login';
   const isUserPage = placeUse === 'my-list';
   const isAddReview = placeUse === 'add-review';
   const handleSignOutClick = (evt: React.MouseEvent<HTMLElement>) => {
@@ -25,7 +26,7 @@ export function Header({placeUse}: Props): JSX.Element {
       <Logo/>
 
       {isUserPage && <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>}
-      {authorizationStatus === AuthorizationStatus.NoAuth && <h1 className="page-title user-page__title">Sign in</h1>}
+      {(authorizationStatus === AuthorizationStatus.NoAuth && isLogin) && <h1 className="page-title user-page__title">Sign in</h1>}
       {
         isAddReview &&
         <Breadcrumbs
@@ -34,25 +35,26 @@ export function Header({placeUse}: Props): JSX.Element {
         />
       }
 
-      {
-        authorizationStatus === AuthorizationStatus.Auth &&
-        <ul className="user-block">
-          <li className="user-block__item">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-            </div>
-          </li>
-          <li className="user-block__item">
-            <Link
-              to={AppRoute.Login}
-              className="user-block__link"
-              onClick={handleSignOutClick}
-            >
-              Sign out
-            </Link>
-          </li>
-        </ul>
-      }
+      <ul className="user-block">
+        { authorizationStatus === AuthorizationStatus.Auth &&
+          <>
+            <li className="user-block__item">
+              <div className="user-block__avatar">
+                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+              </div>
+            </li>
+            <li className="user-block__item">
+              <Link
+                to={AppRoute.Login}
+                className="user-block__link"
+                onClick={handleSignOutClick}
+              >
+                Sign out
+              </Link>
+            </li>
+          </>}
+        { (authorizationStatus === AuthorizationStatus.NoAuth && !isLogin) && <Link className="user-block__link" to={AppRoute.Login}>Sign in</Link>}
+      </ul>
     </header>
   );
 }
