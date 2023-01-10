@@ -10,13 +10,16 @@ import {
   requireAuthorization,
   resetNumberOfFilmsShown,
   setGenres,
+  setUserData,
   showMoreMovies
 } from './action';
 import {Film} from '../types/film.type';
 import {getFilteredFilms} from '../utils/get-filtered-films';
+import {User} from '../types/user.type';
 
 type InitialState = {
   authorizationStatus: string;
+  user: User | Record<string, never>;
   movies: Film[];
   movie: Film | Record<string, never>;
   promoFilm: Film | Record<string, never>;
@@ -29,6 +32,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
+  user: {},
   movies: [],
   movie: {},
   promoFilm: {},
@@ -70,5 +74,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(setUserData, (state, action) => {
+      state.user = action.payload;
     });
 });
