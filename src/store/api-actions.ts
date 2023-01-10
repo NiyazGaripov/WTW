@@ -10,7 +10,8 @@ import {
   redirectToRoute,
   requireAuthorization,
   setDataLoadingStatus,
-  setGenres
+  setGenres,
+  setUserData
 } from './action';
 import {dropToken, saveToken} from '../services/token';
 import {getGenres} from '../utils/get-genres';
@@ -99,9 +100,10 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async ({email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<User>(APIRoute.Login, {email, password});
-    saveToken(token);
+    const {data: user} = await api.post<User>(APIRoute.Login, {email, password});
+    saveToken(user.token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(setUserData(user));
     dispatch(redirectToRoute(AppRoute.Main));
   },
 );
