@@ -1,6 +1,7 @@
 import {createAction} from '@reduxjs/toolkit';
 import {Film} from '../types/film.type';
 import {AppRoute, AuthorizationStatus, DataLoadingStatus} from '../consts';
+import {User} from '../types/user.type';
 
 export const setGenres = createAction<string[]>('common/setGenres');
 export const changeGenre = createAction<string>('common/changeGenre');
@@ -14,3 +15,4 @@ export const loadFavoriteFilms = createAction<Film[]>('data/loadFavoriteFilms');
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 export const setDataLoadingStatus = createAction<DataLoadingStatus>('data/setDataLoadingStatus');
 export const redirectToRoute = createAction<AppRoute>('main/redirectToRoute');
+export const setUserData = createAction<User>('login/setUserData');
