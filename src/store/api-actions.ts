@@ -14,18 +14,11 @@ import {
 } from './action';
 import {dropToken, saveToken} from '../services/token';
 import {getGenres} from '../utils/get-genres';
+import {User} from '../types/user.type';
 
 type AuthData = {
   email: string;
   password: string;
-};
-
-type UserData = {
-  avatarUrl: string;
-  email: string;
-  id: number;
-  name: string;
-  token: string;
 };
 
 export const fetchFilmsAction = createAsyncThunk<void, undefined, {
@@ -106,7 +99,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async ({email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
+    const {data: {token}} = await api.post<User>(APIRoute.Login, {email, password});
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
     dispatch(redirectToRoute(AppRoute.Main));
