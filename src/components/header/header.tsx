@@ -13,6 +13,7 @@ type Props = {
 export function Header({placeUse}: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const {avatarUrl} = useAppSelector((state) => state.user);
   const favoriteMovies = useAppSelector((state) => state.favoriteMovies);
   const isLogin = placeUse === 'login';
   const isUserPage = placeUse === 'my-list';
@@ -41,7 +42,7 @@ export function Header({placeUse}: Props): JSX.Element {
           <>
             <li className="user-block__item">
               <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+                <img src={avatarUrl} alt="User avatar" width="63" height="63"/>
               </div>
             </li>
             <li className="user-block__item">
