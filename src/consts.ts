@@ -78,6 +78,7 @@ export const Config = {
 
 export enum APIRoute {
   Films = '/films',
+  Comments = '/comments',
   Promo = '/promo',
   Favorites = '/favorite',
   Login = '/login',
