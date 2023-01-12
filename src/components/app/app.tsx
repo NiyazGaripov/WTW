@@ -1,6 +1,5 @@
 import {Route, Routes} from 'react-router-dom';
 import {AppRoute} from '../../consts';
-import {comments} from '../../mocks/comments';
 import {Main} from '../../pages/main/main';
 import {Login} from '../../pages/login/login';
 import {MyList} from '../../pages/my-list/my-list';
@@ -49,7 +48,7 @@ export function App(): JSX.Element {
           />
           <Route
             path="reviews"
-            element={<FilmReviews comments={comments}/>}
+            element={<FilmReviews/>}
           />
         </Route>
         <Route
