@@ -8,6 +8,7 @@ import {
   loadFavoriteFilms,
   loadFilms,
   loadPromoFilm,
+  loadSimilarMovies,
   redirectToRoute,
   requireAuthorization,
   setDataLoadingStatus,
@@ -54,6 +55,24 @@ export const fetchPromoFilmAction = createAsyncThunk<void, undefined, {
       dispatch(setDataLoadingStatus(DataLoadingStatus.Pending));
       const {data} = await api.get<Film>(APIRoute.Promo);
       dispatch(loadPromoFilm(data));
+      dispatch(setDataLoadingStatus(DataLoadingStatus.Fulfilled));
+    } catch {
+      dispatch(setDataLoadingStatus(DataLoadingStatus.Rejected));
+    }
+  },
+);
+
+export const fetchSimilarMoviesAction = createAsyncThunk<void, number, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchSimilarMovies',
+  async (id, {dispatch, extra: api}) => {
+    try {
+      dispatch(setDataLoadingStatus(DataLoadingStatus.Pending));
+      const {data} = await api.get<Film[]>(`${APIRoute.Films}/${id}/similar`);
+      dispatch(loadSimilarMovies(data));
       dispatch(setDataLoadingStatus(DataLoadingStatus.Fulfilled));
     } catch {
       dispatch(setDataLoadingStatus(DataLoadingStatus.Rejected));
