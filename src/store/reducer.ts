@@ -3,10 +3,12 @@ import {AuthorizationStatus, Config} from '../consts';
 import {
   changeGenre,
   filteredMoviesByGenre,
+  loadComments,
   loadFavoriteFilms,
   loadFilms,
   loadMovie,
   loadPromoFilm,
+  loadSimilarMovies,
   requireAuthorization,
   resetNumberOfFilmsShown,
   setGenres,
@@ -16,6 +18,7 @@ import {
 import {Film} from '../types/film.type';
 import {getFilteredFilms} from '../utils/get-filtered-films';
 import {User} from '../types/user.type';
+import {Comment} from '../types/comment.type';
 
 type InitialState = {
   authorizationStatus: string;
@@ -28,6 +31,8 @@ type InitialState = {
   activeGenre: string;
   numberOfFilmsShown: number;
   filteredMovies: Film[];
+  comments: Comment[];
+  similarMovies: Film[];
 }
 
 const initialState: InitialState = {
@@ -41,6 +46,8 @@ const initialState: InitialState = {
   activeGenre: Config.DEFAULT_GENRE,
   numberOfFilmsShown: Config.NUMBER_OF_FILMS_SHOWN,
   filteredMovies: [],
+  comments: [],
+  similarMovies: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -68,6 +75,12 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadPromoFilm, (state, action) => {
       state.promoFilm = action.payload;
+    })
+    .addCase(loadSimilarMovies, (state, action) => {
+      state.similarMovies = action.payload;
+    })
+    .addCase(loadComments, (state, action) => {
+      state.comments = action.payload;
     })
     .addCase(loadFavoriteFilms, (state, action) => {
       state.favoriteMovies = action.payload;
