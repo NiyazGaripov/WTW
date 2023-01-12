@@ -4,6 +4,7 @@ import {AppDispatch, State} from '../types/state';
 import {Film} from '../types/film.type';
 import {APIRoute, AppRoute, AuthorizationStatus, DataLoadingStatus} from '../consts';
 import {
+  loadComments,
   loadFavoriteFilms,
   loadFilms,
   loadPromoFilm,
@@ -16,6 +17,7 @@ import {
 import {dropToken, saveToken} from '../services/token';
 import {getGenres} from '../utils/get-genres';
 import {User} from '../types/user.type';
+import {Comment} from '../types/comment.type';
 
 type AuthData = {
   email: string;
@@ -56,6 +58,18 @@ export const fetchPromoFilmAction = createAsyncThunk<void, undefined, {
     } catch {
       dispatch(setDataLoadingStatus(DataLoadingStatus.Rejected));
     }
+  },
+);
+
+export const fetchCommentsAction = createAsyncThunk<void, number, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchComments',
+  async (id, {dispatch, extra: api}) => {
+    const {data} = await api.get<Comment[]>(`${APIRoute.Comments}/${id}`);
+    dispatch(loadComments(data));
   },
 );
 
