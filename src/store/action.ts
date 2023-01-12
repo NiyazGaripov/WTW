@@ -2,6 +2,7 @@ import {createAction} from '@reduxjs/toolkit';
 import {Film} from '../types/film.type';
 import {AppRoute, AuthorizationStatus, DataLoadingStatus} from '../consts';
 import {User} from '../types/user.type';
+import {Comment} from '../types/comment.type';
 
 export const setGenres = createAction<string[]>('common/setGenres');
 export const changeGenre = createAction<string>('common/changeGenre');
