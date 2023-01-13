@@ -1,4 +1,4 @@
-import {Outlet} from 'react-router-dom';
+import {Outlet, useParams} from 'react-router-dom';
 import {SvgSprite} from '../../components/svg-sprite/svg-sprite';
 import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header/header';
@@ -6,12 +6,26 @@ import {NavigationList} from '../../components/navigation-list/navigation-list';
 import {FilmShortDescription} from '../../components/film-short-description/film-short-description';
 import {FilmInfo} from '../../components/film-info/film-info';
 import {Catalog} from '../../components/catalog/catalog';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useEffect} from 'react';
+import {fetchMovieAction} from '../../store/api-actions';
 
 export function Movie(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
   const movie = useAppSelector((state) => state.movie);
   const movies = useAppSelector((state) => state.movies);
   const relatedFilms = movies.filter((film) => movie.genre === film.genre);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchMovieAction(Number(id)));
+    }
+  }, [id, dispatch]);
+
+  if (!movie) {
+    return (<div>Loading...</div>);
+  }
 
   return (
     <>
