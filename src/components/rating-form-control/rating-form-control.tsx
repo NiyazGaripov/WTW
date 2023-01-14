@@ -1,15 +1,11 @@
-import {Rating} from '../../types/rating.type';
+import {RATINGS} from '../../consts';
 
-type Props = {
-  ratings: Rating[];
-};
-
-export function RatingFormControl({ratings}: Props): JSX.Element {
+export function RatingFormControl(): JSX.Element {
   return (
     <div className="rating">
       <div className="rating__stars">
         {
-          ratings.map((rating) =>
+          RATINGS.map((rating) =>
             (
               <div key={rating.id}>
                 <input

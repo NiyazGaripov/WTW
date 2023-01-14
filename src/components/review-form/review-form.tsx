@@ -1,5 +1,4 @@
 import {RatingFormControl} from '../rating-form-control/rating-form-control';
-import {RATINGS} from '../../consts';
 import {ChangeEvent, useState} from 'react';
 
 enum ReviewLength {
@@ -20,7 +19,7 @@ export function ReviewForm(): JSX.Element {
   return (
     <div className="add-review">
       <form action="#" className="add-review__form">
-        <RatingFormControl ratings={RATINGS}/>
+        <RatingFormControl/>
 
         <div className="add-review__text">
           <textarea
