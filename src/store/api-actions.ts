@@ -53,14 +53,12 @@ export const fetchMovieAction = createAsyncThunk<void, number, {
   'data/fetchMovie',
   async (id, {dispatch, extra: api}) => {
     try {
-      dispatch(setDataLoadingStatus(DataLoadingStatus.Pending));
       const {data} = await api.get<Film>(`${APIRoute.Films}/${id}`);
       dispatch(loadMovie(data));
       dispatch(fetchSimilarMoviesAction(id));
       dispatch(fetchCommentsAction(id));
-      dispatch(setDataLoadingStatus(DataLoadingStatus.Fulfilled));
     } catch {
-      dispatch(setDataLoadingStatus(DataLoadingStatus.Rejected));
+      dispatch(redirectToRoute(AppRoute.NotFound));
     }
   },
 );
