@@ -18,43 +18,43 @@ export enum AuthorizationStatus {
 
 export const RATINGS: Rating[] = [
   {
-    value: '10',
+    value: 10,
     title: 'Rating 10',
   },
   {
-    value: '9',
+    value: 9,
     title: 'Rating 9',
   },
   {
-    value: '8',
+    value: 8,
     title: 'Rating 8',
   },
   {
-    value: '7',
+    value: 7,
     title: 'Rating 7',
   },
   {
-    value: '6',
+    value: 6,
     title: 'Rating 6',
   },
   {
-    value: '5',
+    value: 5,
     title: 'Rating 5',
   },
   {
-    value: '4',
+    value: 4,
     title: 'Rating 4',
   },
   {
-    value: '3',
+    value: 3,
     title: 'Rating 3',
   },
   {
-    value: '2',
+    value: 2,
     title: 'Rating 2',
   },
   {
-    value: '1',
+    value: 1,
     title: 'Rating 1',
   },
 ];

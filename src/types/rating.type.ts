@@ -1,4 +1,4 @@
 export type Rating = {
-  value: string;
+  value: number;
   title: string;
 };
