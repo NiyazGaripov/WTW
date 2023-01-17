@@ -1,37 +1,59 @@
 import {RatingFormControl} from '../rating-form-control/rating-form-control';
-import {ChangeEvent, useState} from 'react';
+import {FormEvent} from 'react';
+import {RATINGS} from '../../consts';
+import {useAppDispatch} from '../../hooks';
+import {useFormField} from '../../hooks/useFormField';
 
 enum ReviewLength {
   MIN = 50,
   MAX = 400
 }
 
-export function ReviewForm(): JSX.Element {
-  const [formData, setFormData] = useState({
-    rating: '0',
-    review: '',
-  });
+type Props = {
+  id: number;
+}
 
-  const handleFormFieldChange = (name: string, value: number | string) => {
-    setFormData({...formData, [name]: value});
+export function ReviewForm({id}: Props): JSX.Element {
+  const dispatch = useAppDispatch();
+  const rating = useFormField('',{ allowEmpty: true });
+  const comment = useFormField('',{ allowEmpty: true, minLength: ReviewLength.MIN, maxLength: ReviewLength.MAX,});
+
+  const handleFormSubmit = (evt: FormEvent) => {
+    evt.preventDefault();
+
+    rating.reset();
+    comment.reset();
   };
 
   return (
     <div className="add-review">
-      <form action="#" className="add-review__form">
-        <RatingFormControl/>
+      <form action="#" className="add-review__form" onSubmit={handleFormSubmit}>
+        <div className="rating">
+          <div className="rating__stars">
+            {
+              RATINGS.map(({value, title}) =>
+                (
+                  <RatingFormControl
+                    key={value}
+                    value={value}
+                    title={title}
+                    onFormFieldChange={rating.onChange}
+                    currentValue={Number(rating.value)}
+                  />
+                )
+              )
+            }
+          </div>
+        </div>
 
         <div className="add-review__text">
           <textarea
             className="add-review__textarea"
-            name="review"
-            id="review"
+            name="comment"
+            id="comment"
             placeholder="Review text"
-            value={formData.review}
-            onChange={(evt: ChangeEvent<HTMLTextAreaElement>) => {
-              const {name, value} = evt.target;
-              handleFormFieldChange(name, value);
-            }}
+            value={comment.value}
+            onChange={comment.onChange}
           >
           </textarea>
 
@@ -39,10 +61,7 @@ export function ReviewForm(): JSX.Element {
             <button
               className="add-review__btn"
               type="submit"
-              disabled={
-                formData.rating === '0' &&
-                (formData.review.length < ReviewLength.MIN || formData.review.length > ReviewLength.MAX)
-              }
+              disabled={!rating.valid.inputValid || !comment.valid.inputValid}
             >
               Post
             </button>
