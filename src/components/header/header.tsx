@@ -30,11 +30,7 @@ export function Header({placeUse}: Props): JSX.Element {
       {isUserPage && <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{favoriteMovies.length}</span></h1>}
       {(authorizationStatus === AuthorizationStatus.NoAuth && isLogin) && <h1 className="page-title user-page__title">Sign in</h1>}
       {
-        isAddReview &&
-        <Breadcrumbs
-          filmName="The Grand Budapest Hotel"
-          path="film-page.html"
-        />
+        isAddReview && <Breadcrumbs/>
       }
 
       <ul className="user-block">
