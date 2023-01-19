@@ -2,9 +2,11 @@ import {SvgSprite} from '../../components/svg-sprite/svg-sprite';
 import {Header} from '../../components/header/header';
 import {ReviewForm} from '../../components/review-form/review-form';
 import {useAppSelector} from '../../hooks';
+import {AuthorizationStatus} from '../../consts';
 
 export function AddReview(): JSX.Element {
-  const {name, posterImage, backgroundImage} = useAppSelector((state) => state.movie);
+  const {id, name, posterImage, backgroundImage} = useAppSelector((state) => state.movie);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   return (
     <>
@@ -23,7 +25,7 @@ export function AddReview(): JSX.Element {
             <img src={posterImage} alt={name} width="218" height="327"/>
           </div>
         </div>
-        <ReviewForm/>
+        { authorizationStatus === AuthorizationStatus.Auth && <ReviewForm id={id}/> }
       </section>
     </>
   );
