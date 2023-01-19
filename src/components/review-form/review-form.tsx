@@ -3,6 +3,7 @@ import {FormEvent} from 'react';
 import {RATINGS} from '../../consts';
 import {useAppDispatch} from '../../hooks';
 import {useFormField} from '../../hooks/useFormField';
+import {addNewCommentAction} from '../../store/api-actions';
 
 enum ReviewLength {
   MIN = 50,
@@ -20,7 +21,11 @@ export function ReviewForm({id}: Props): JSX.Element {
 
   const handleFormSubmit = (evt: FormEvent) => {
     evt.preventDefault();
-
+    dispatch(addNewCommentAction({
+      id: id,
+      comment: comment.value,
+      rating: Number(rating.value),
+    }));
     rating.reset();
     comment.reset();
   };
