@@ -19,3 +19,4 @@ export const redirectToRoute = createAction<AppRoute>('main/redirectToRoute');
 export const setUserData = createAction<User>('login/setUserData');
 export const loadComments = createAction<Comment[]>('data/loadComments');
 export const loadSimilarMovies = createAction<Film[]>('data/loadSimilarMovies');
+export const addNewComment = createAction<Comment>('data/addNewComment');
