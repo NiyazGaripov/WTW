@@ -51,6 +51,8 @@ export function ReviewForm({id}: Props): JSX.Element {
           </div>
         </div>
 
+        <p style={{fontSize: '14px'}}>The comment must contain at least {ReviewLength.MIN} and no more than {ReviewLength.MAX} characters</p>
+
         <div className="add-review__text">
           <textarea
             className="add-review__textarea"
