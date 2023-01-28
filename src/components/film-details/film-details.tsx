@@ -1,7 +1,9 @@
 import {useAppSelector} from '../../hooks';
+import {getFilmDuration} from '../../utils/date';
 
 export function FilmDetails(): JSX.Element {
   const movie = useAppSelector((state) => state.movie);
+  const filmDuration = getFilmDuration(movie.runTime);
 
   return (
     <div className="film-card__text film-card__row">
@@ -21,7 +23,7 @@ export function FilmDetails(): JSX.Element {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{movie.runTime}</span>
+          <span className="film-card__details-value">{filmDuration}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
