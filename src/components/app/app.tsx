@@ -1,6 +1,5 @@
-import {Route, Routes, BrowserRouter} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../consts';
-import {comments} from '../../mocks/comments';
+import {Route, Routes} from 'react-router-dom';
+import {AppRoute} from '../../consts';
 import {Main} from '../../pages/main/main';
 import {Login} from '../../pages/login/login';
 import {MyList} from '../../pages/my-list/my-list';
@@ -12,10 +11,12 @@ import {Movie} from '../../pages/movie/movie';
 import {FilmOverview} from '../film-overview/film-overview';
 import {FilmDetails} from '../film-details/film-details';
 import {FilmReviews} from '../film-reviews/film-reviews';
+import {HistoryRouter} from '../history-route/history-route';
+import {browserHistory} from '../../browser-history';
 
 export function App(): JSX.Element {
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
@@ -28,7 +29,7 @@ export function App(): JSX.Element {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+            <PrivateRoute>
               <MyList/>
             </PrivateRoute>
           }
@@ -47,13 +48,13 @@ export function App(): JSX.Element {
           />
           <Route
             path="reviews"
-            element={<FilmReviews comments={comments}/>}
+            element={<FilmReviews/>}
           />
         </Route>
         <Route
           path={AppRoute.AddReview}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+            <PrivateRoute>
               <AddReview/>
             </PrivateRoute>
           }
@@ -67,6 +68,6 @@ export function App(): JSX.Element {
           element={<NotFound/>}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }

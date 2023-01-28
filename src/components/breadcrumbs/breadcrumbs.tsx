@@ -1,20 +1,17 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../consts';
+import {useAppSelector} from '../../hooks';
 
-type Props = {
-  filmName: string;
-  path: string;
-}
+export function Breadcrumbs(): JSX.Element {
+  const {id, name} = useAppSelector((state) => state.movie);
 
-export function Breadcrumbs({filmName, path}: Props): JSX.Element {
   return (
     <nav className="breadcrumbs">
       <ul className="breadcrumbs__list">
         <li className="breadcrumbs__item">
-          <Link to={path} className="breadcrumbs__link">{filmName}</Link>
+          <Link to={`/films/${id}/overview`} className="small-film-card__link">{name}</Link>
         </li>
         <li className="breadcrumbs__item">
-          <Link to={AppRoute.AddReview} className="breadcrumbs__link">Add review</Link>
+          <span className="breadcrumbs__link">Add review</span>
         </li>
       </ul>
     </nav>

@@ -1,35 +1,30 @@
-import {Rating} from '../../types/rating.type';
+import {ChangeEvent} from 'react';
 
 type Props = {
-  ratings: Rating[];
-};
-
-export function RatingFormControl({ratings}: Props): JSX.Element {
+  value: number;
+  title: string;
+  onFormFieldChange: (evt: ChangeEvent<HTMLInputElement>) => void;
+  currentValue: number;
+}
+export function RatingFormControl({value, title, onFormFieldChange, currentValue}: Props): JSX.Element {
   return (
-    <div className="rating">
-      <div className="rating__stars">
-        {
-          ratings.map((rating) =>
-            (
-              <div key={rating.id}>
-                <input
-                  className="rating__input"
-                  id={rating.id}
-                  type="radio"
-                  name="rating"
-                  value={rating.value}
-                />
-                <label
-                  className="rating__label"
-                  htmlFor={rating.id}
-                >
-                  {rating.title}
-                </label>
-              </div>
-            )
-          )
-        }
-      </div>
-    </div>
+    <>
+      <input
+        className="rating__input"
+        id={`star-${value}`}
+        type="radio"
+        name="rating"
+        value={value}
+        onChange={onFormFieldChange}
+        checked={value === currentValue}
+      />
+      <label
+        className="rating__label"
+        htmlFor={`star-${value}`}
+        title={title}
+      >
+        {title}
+      </label>
+    </>
   );
 }

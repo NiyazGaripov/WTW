@@ -1,6 +1,8 @@
 import {createAction} from '@reduxjs/toolkit';
 import {Film} from '../types/film.type';
-import {AuthorizationStatus, DataLoadingStatus} from '../consts';
+import {AppRoute, AuthorizationStatus, DataLoadingStatus} from '../consts';
+import {User} from '../types/user.type';
+import {Comment} from '../types/comment.type';
 
 export const setGenres = createAction<string[]>('common/setGenres');
 export const changeGenre = createAction<string>('common/changeGenre');
@@ -13,3 +15,8 @@ export const loadPromoFilm = createAction<Film>('data/loadPromoFilm');
 export const loadFavoriteFilms = createAction<Film[]>('data/loadFavoriteFilms');
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 export const setDataLoadingStatus = createAction<DataLoadingStatus>('data/setDataLoadingStatus');
+export const redirectToRoute = createAction<AppRoute>('main/redirectToRoute');
+export const setUserData = createAction<User>('login/setUserData');
+export const loadComments = createAction<Comment[]>('data/loadComments');
+export const loadSimilarMovies = createAction<Film[]>('data/loadSimilarMovies');
+export const addNewComment = createAction<Comment>('data/addNewComment');

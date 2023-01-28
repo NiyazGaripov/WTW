@@ -1,11 +1,9 @@
-import {Comment} from '../../types/comment.type';
+import {useAppSelector} from '../../hooks';
 import {Review} from '../review/review';
 
-type Props = {
-  comments: Comment[];
-};
+export function FilmReviews(): JSX.Element {
+  const comments = useAppSelector((state) => state.comments);
 
-export function FilmReviews({comments}: Props): JSX.Element {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">

@@ -30,7 +30,7 @@ export function Controls(): JSX.Element {
         {authorizationStatus === AuthorizationStatus.Auth && <span className="film-card__count">{favoriteMoviesCount}</span>}
       </Link>
 
-      <Link to={AppRoute.AddReview} className="btn film-card__button">Add review</Link>
+      {authorizationStatus === AuthorizationStatus.Auth && <Link to={AppRoute.AddReview} className="btn film-card__button">Add review</Link>}
     </div>
   );
 }
